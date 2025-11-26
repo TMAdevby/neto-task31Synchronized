@@ -12,7 +12,7 @@ public class TheWay implements Runnable {
         String str = generateRoute("RLRFR", 100);
         Integer rCount = 0;
         for (char ch : str.toCharArray()) {
-            if(ch == 'R'){
+            if (ch == 'R') {
                 rCount++;
             }
         }

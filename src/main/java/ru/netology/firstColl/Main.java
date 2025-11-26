@@ -45,7 +45,7 @@ public class Main {
         for (Map.Entry<Integer, Integer> entry : TheWay.sizeToFreq.entrySet()) {
             threadCount += entry.getValue();
         }
-        System.out.println("Количество потоков равно " + threadCount );
+        System.out.println("Количество потоков равно " + threadCount);
 
     }
 }

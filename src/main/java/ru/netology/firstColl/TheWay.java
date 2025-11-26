@@ -13,17 +13,17 @@ public class TheWay implements Runnable {
         String str = generateRoute("RLRFR", 100);
         Integer rCount = 0;
         for (char ch : str.toCharArray()) {
-            if(ch == 'R'){
+            if (ch == 'R') {
                 rCount++;
             }
         }
-    synchronized (sizeToFreq) {
-        if (sizeToFreq.containsKey(rCount)) {
-            sizeToFreq.put(rCount, sizeToFreq.get(rCount) + 1);
-        } else {
-            sizeToFreq.put(rCount, 1);
+        synchronized (sizeToFreq) {
+            if (sizeToFreq.containsKey(rCount)) {
+                sizeToFreq.put(rCount, sizeToFreq.get(rCount) + 1);
+            } else {
+                sizeToFreq.put(rCount, 1);
+            }
         }
-    }
 
     }
 
