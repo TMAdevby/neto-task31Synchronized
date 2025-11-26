@@ -1,4 +1,4 @@
-package ru.netology;
+package ru.netology.firstSynch;
 
 import java.util.ArrayList;
 import java.util.List;
