@@ -17,7 +17,7 @@ public class TheWay implements Runnable {
         }
     synchronized (sizeToFreq) {
         if (sizeToFreq.containsKey(rCount)) {
-            sizeToFreq.put(rCount, sizeToFreq.get(rCount + 1));
+            sizeToFreq.put(rCount, sizeToFreq.get(rCount) + 1);
         } else {
             sizeToFreq.put(rCount, 1);
         }
