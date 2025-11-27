@@ -6,26 +6,27 @@ import java.util.Random;
 
 public class TheWay implements Runnable {
 
-    public static final Map<Integer, Integer> sizeToFreq = new HashMap<Integer, Integer>();
+    public static final Map<Integer, Integer> sizeToFreq = new HashMap<>();
+
+    public static final Object loggerLock = new Object();
 
     @Override
     public void run() {
         String str = generateRoute("RLRFR", 100);
-        Integer rCount = 0;
+        int rCount = 0;
         for (char ch : str.toCharArray()) {
             if (ch == 'R') {
                 rCount++;
             }
         }
-
         synchronized (sizeToFreq) {
-            if (sizeToFreq.containsKey(rCount)) {
-                sizeToFreq.put(rCount, sizeToFreq.get(rCount) + 1);
-            } else {
-                sizeToFreq.put(rCount, 1);
-            }
+            sizeToFreq.merge(rCount, 1, Integer::sum); // короче и безопаснее
         }
 
+
+        synchronized (loggerLock) {
+            loggerLock.notify(); // будим логгер
+        }
     }
 
     public static String generateRoute(String letters, int length) {

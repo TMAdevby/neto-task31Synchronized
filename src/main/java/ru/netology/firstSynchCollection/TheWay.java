@@ -1,12 +1,11 @@
-package ru.netology.firstColl;
+package ru.netology.firstSynchCollection;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class TheWay implements Runnable {
 
-    public static final Map<Integer, Integer> sizeToFreq = new HashMap<Integer, Integer>();
+    public static final Map<Integer, Integer> sizeToFreq = new ConcurrentHashMap<>();
 
     @Override
     public void run() {
@@ -17,13 +16,9 @@ public class TheWay implements Runnable {
                 rCount++;
             }
         }
-        synchronized (sizeToFreq) {
-            if (sizeToFreq.containsKey(rCount)) {
-                sizeToFreq.put(rCount, sizeToFreq.get(rCount) + 1);
-            } else {
-                sizeToFreq.put(rCount, 1);
-            }
-        }
+//    synchronized (sizeToFreq) {
+        sizeToFreq.merge(rCount, 1, Integer::sum);
+//    }
 
     }
 

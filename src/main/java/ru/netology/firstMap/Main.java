@@ -1,4 +1,4 @@
-package ru.netology.firstColl;
+package ru.netology.firstMap;
 
 import java.util.ArrayList;
 import java.util.List;
